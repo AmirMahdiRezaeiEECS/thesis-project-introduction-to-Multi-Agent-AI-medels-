@@ -5,7 +5,7 @@ What this small program does:
 این برنامهٔ کوچک چی کار می‌کنه:
 
 - Lets you create a thesis record (student, title, degree).
-- اجازه می‌ده یک رکورد پایان‌نامه بسازی (دانشجو، عنوان، درجه).
+- اجازه می‌دهد یک رکورد پایان‌نامه بسازی (دانشجو، عنوان، درجه).
 
 - Lets you list all records and see each status.
 - می‌تونی همهٔ رکوردها رو ببینی و وضعیت هر کدوم رو ببینی.
