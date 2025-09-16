@@ -4,6 +4,7 @@
 
 https://github.com/AmirMahdiRezaeiEECS/thesis-project-introduction-to-Multi-Agent-AI-medels-
 
+<img width="410" height="795" alt="Screenshot 1404-06-26 at 1 42 00 AM" src="https://github.com/user-attachments/assets/1705ee0b-3314-42ab-af7c-8fa6e98e20d6" />
 
 
 ## شرح پروژه پایتون: "سیستم مدیریت پایان‌نامه‌ها"
@@ -519,7 +520,8 @@ Single Source of Truth: داده‌ها در فایل‌های JSON ذخیره �
 تست: با استفاده از pytest برای تست‌های کوچک و جامع
 
 ساختار پروژه
-<img width="1440" height="900" alt="Screenshot 1404-06-26 at 12 41 32 AM" src="https://github.com/user-attachments/assets/8828014a-9e92-4e47-a002-2af3b1a5ad43" />
+
+<img width="410" height="795" alt="Screenshot 1404-06-26 at 1 42 00 AM" src="https://github.com/user-attachments/assets/7e3adc71-5b35-4531-a25d-3ac8b72babab" />
 
 
 ├── data
