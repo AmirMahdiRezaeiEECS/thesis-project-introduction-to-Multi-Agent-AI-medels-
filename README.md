@@ -243,21 +243,21 @@ print(data)  # مثال: [{'name': 'علی احمدی', 'student_code': '0000', 
 برای اضافه کردن داده جدید به فایل JSON:
 import json
 
-# داده جدید
+داده جدید
 new_student = {"name": "رضا محمدی", "student_code": "0001", "password": "0001"}
 data = []
 
-# خواندن داده‌های قبلی
+خواندن داده‌های قبلی
 try:
     with open("data/students.json", "r", encoding="utf-8") as file:
         data = json.load(file)
 except FileNotFoundError:
     data = []
 
-# اضافه کردن داده جدید
+اضافه کردن داده جدید
 data.append(new_student)
 
-# ذخیره در فایل
+ذخیره در فایل
 with open("data/students.json", "w", encoding="utf-8") as file:
     json.dump(data, file, ensure_ascii=False, indent=4)
 
@@ -269,16 +269,15 @@ indent=4: فایل JSON رو خوانا و با فرمت مرتب ذخیره م�
 برای ویرایش یه رکورد خاص:
 import json
 
-# خواندن داده‌ها
+خواندن داده‌ها
 with open("data/students.json", "r", encoding="utf-8") as file:
     data = json.load(file)
 
-# ویرایش (مثلاً تغییر رمز عبور دانشجو با کد 0000)
+ویرایش (مثلاً تغییر رمز عبور دانشجو با کد 0000)
 for student in data:
     if student["student_code"] == "0000":
         student["password"] = "new_password"
-
-# ذخیره تغییرات
+ذخیره تغییرات
 with open("data/students.json", "w", encoding="utf-8") as file:
     json.dump(data, file, ensure_ascii=False, indent=4)
 
