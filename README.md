@@ -4,357 +4,6 @@
 
 https://github.com/AmirMahdiRezaeiEECS/thesis-project-introduction-to-Multi-Agent-AI-medels-
 
-سیستم مدیریت پایان‌نامه‌ها
-این پروژه یک سیستم مدیریت پایان‌نامه‌ها است که برای مدیریت فرآیند پایان‌نامه‌ها از مرحله اخذ درس تا ارزیابی نهایی طراحی شده است. هدف اصلی، ایجاد یک نسخه حداقلی (MVP) کامل، کاربردی و قابل توسعه است که با استفاده از برنامه‌نویسی شیءگرا (OOP) و طراحی ماژولار پیاده‌سازی شده است.
-هدف MVP: ارائه یک سیستم قابل اجرا با امکانات پایه که ساختار قوی و آینده‌نگرانه‌ای برای توسعه نسخه‌های بعدی داشته باشد. بخش‌های کم‌اهمیت به نسخه‌های بعدی موکول شده‌اند، اما ساختار و عملکرد کلی حتی در نسخه اول کامل است.
-اصول و الزامات کلیدی
-
-ماژولاریتی و شیءگرایی: کد به‌صورت ماژولار و با استفاده از اصول OOP نوشته شده تا خوانا، قابل نگهداری و قابل توسعه باشد.
-پرتابل بودن: پروژه بدون وابستگی به مسیرهای خاص یا داده‌های سخت‌کدشده اجرا می‌شود.
-Single Source of Truth: داده‌ها در فایل‌های JSON ذخیره شده و از تکرار داده‌ها جلوگیری می‌شود.
-مدیریت فایل‌ها: فایل‌های PDF و تصاویر در پوشه data/uploads ذخیره شده و مسیر آن‌ها در فایل‌های JSON ثبت می‌شود.
-نام‌گذاری فایل‌ها: نام فایل‌ها باید شامل student_code و course_title باشد تا یکتا شوند.
-سادگی و قابلیت توسعه: کد ساده اما قابل توسعه نوشته شده تا حتی با دانش محدود پایتون قابل فهم باشد.
-
-زبان و ابزارها
-
-زبان برنامه‌نویسی: Python
-دیتابیس: فایل‌های JSON
-رابط کاربری: Command Line Interface (CLI)
-ذخیره‌سازی فایل‌ها: PDF و JPG در پوشه data/uploads با مسیرهای ثبت‌شده در JSON
-تست: با استفاده از pytest برای تست‌های کوچک و جامع
-
-ساختار پروژه
-<img width="1440" height="900" alt="Screenshot 1404-06-26 at 12 41 32 AM" src="https://github.com/user-attachments/assets/8828014a-9e92-4e47-a002-2af3b1a5ad43" />
-
-
-├── data
-│   ├── courses.json
-│   ├── defended_thesis.json
-│   ├── professors.json
-│   ├── students.json
-│   ├── thesis.json
-│   └── uploads
-│       └── test.pdf
-├── history
-│   └── changelog.txt
-├── main_program.py
-├── pytest.ini
-├── README.md
-├── src
-│   ├── entities
-│   │   ├── course.py
-│   │   ├── defense.py
-│   │   ├── professor.py
-│   │   ├── student.py
-│   │   ├── thesis.py
-│   │   ├── user.py
-│   │   └── README.md
-│   ├── interfaces
-│   │   ├── auth.py
-│   │   ├── professor_menu.py
-│   │   ├── student_menu.py
-│   │   ├── welcome.py
-│   │   └── README.md
-│   ├── search
-│   │   ├── search_engine.py
-│   ├── storage
-│   │   ├── file_manager.py
-│   │   ├── json_storage.py
-│   ├── utilities
-│   │   ├── utils.py
-│   ├── workflow
-│   │   ├── thesis_workflow.py
-└── tests
-    ├── test_auth.py
-    ├── test_comprehensive.py
-    ├── test_entities.py
-    ├── test_json_storage.py
-    ├── test_main.py
-    ├── test_menus.py
-    ├── test_search.py
-    ├── test_workflow.py
-
-توضیحات ساختار
-
-data/: شامل فایل‌های JSON برای ذخیره داده‌ها و پوشه uploads برای فایل‌های PDF و تصاویر.
-history/: شامل فایل changelog.txt برای ثبت تغییرات نسخه‌ها.
-main_program.py: نقطه ورود اصلی برنامه که از پکیج‌ها برای اجرای سیستم استفاده می‌کند.
-src/: شامل پکیج‌های اصلی و سطح پایین پروژه:
-entities/: کلاس‌های اصلی مانند User, Student, Professor, Course, Thesis, Defense.
-interfaces/: رابط‌های کاربری CLI شامل خوشامدگویی، ورود، و منوهای دانشجو و استاد.
-search/: موتور جست‌وجو برای پایان‌نامه‌های دفاع‌شده.
-storage/: مدیریت ذخیره‌سازی داده‌ها (JSON و فایل‌ها).
-utilities/: توابع عمومی و قابل استفاده مجدد.
-workflow/: منطق فرآیندهای پایان‌نامه (مثل ثبت درخواست و دفاع).
-
-
-tests/: شامل تست‌های کوچک و جامع برای اطمینان از عملکرد صحیح ماژول‌ها.
-
-فایل‌های JSON
-1. students.json
-هدف: ذخیره اطلاعات دانشجویانفیلدها:
-
-name: نام کامل دانشجو (str)
-student_code: کد دانشجویی برای ورود (str)
-password: رمز عبور (str)
-
-مثال:
-[
-    {
-        "name": "علی احمدی",
-        "student_code": "0000",
-        "password": "0000"
-    }
-]
-
-2. professors.json
-هدف: ذخیره اطلاعات اساتیدفیلدها:
-
-name: نام استاد (str)
-teacher_code: کد استادی برای ورود (str)
-password: رمز عبور (str)
-capacity_supervise: ظرفیت راهنمایی (int, اختیاری)
-capacity_judge: ظرفیت داوری (int, اختیاری)
-
-مثال:
-[
-    {
-        "name": "دکتر محمدی",
-        "teacher_code": "1111",
-        "password": "1111",
-        "capacity_supervise": 5,
-        "capacity_judge": 10
-    }
-]
-
-3. courses.json
-هدف: ذخیره اطلاعات درس‌هافیلدها:
-
-course_id: آیدی درس (str)
-course_title: عنوان درس (str)
-professor_code: کد استاد (str)
-year: سال تحصیلی (int)
-semester: نیمسال (str: "اول" یا "دوم")
-capacity: ظرفیت (int)
-resources: منابع درسی (list)
-sessions: تعداد جلسات (int)
-unit: تعداد واحد (int)
-
-مثال:
-[
-    {
-        "course_id": "C001",
-        "course_title": "هوش مصنوعی پیشرفته",
-        "professor_code": "1111",
-        "year": 2025,
-        "semester": "اول",
-        "capacity": 10,
-        "resources": ["کتاب"],
-        "sessions": 10,
-        "unit": 3
-    },
-    {
-        "course_id": "C002",
-        "course_title": "یادگیری ماشین پیشرفته",
-        "professor_code": "1111",
-        "year": 2025,
-        "semester": "اول",
-        "capacity": 10,
-        "resources": ["کتاب"],
-        "sessions": 10,
-        "unit": 3
-    }
-]
-
-4. thesis.json
-هدف: ذخیره درخواست‌های اخذ پایان‌نامهفیلدها:
-
-student_code: کد دانشجو (str)
-course_id: آیدی درس (str)
-request_date: تاریخ ثبت درخواست (str, فرمت YYYY-MM-DD)
-approval_date: تاریخ تأیید (str, فرمت YYYY-MM-DD)
-status: وضعیت درخواست (str: "pending", "approved", "rejected", "defending")
-defense_date: تاریخ دفاع (str, اختیاری)
-files: مسیر فایل‌های PDF/تصاویر (list)
-score: نمره (float, اختیاری)
-judges: لیست داوران (list)
-
-شناسه یکتا: ترکیب student_code + course_idمثال:
-[
-    {
-        "student_code": "0000",
-        "course_id": "C001",
-        "request_date": "2025-09-16",
-        "approval_date": "2025-09-16",
-        "status": "approved",
-        "defense_date": null,
-        "files": [],
-        "score": null,
-        "judges": []
-    }
-]
-
-5. defended_thesis.json
-هدف: آرشیو پایان‌نامه‌های دفاع‌شدهفیلدها:
-
-student_code: کد دانشجو (str)
-course_id: آیدی درس (str)
-title: عنوان پایان‌نامه (str)
-year: سال دفاع (int)
-semester: نیمسال دفاع (str)
-supervisor: کد استاد راهنما (str)
-judges: لیست داوران (list)
-score: نمره نهایی (float)
-files: مسیر فایل‌های PDF/تصاویر (list)
-keywords: کلمات کلیدی (list)
-
-مثال:
-[
-    {
-        "student_code": "0000",
-        "course_id": "C002",
-        "title": "کاربرد هوش مصنوعی در آموزش",
-        "year": 2025,
-        "semester": "اول",
-        "supervisor": "1111",
-        "judges": [],
-        "score": null,
-        "files": ["data/uploads/0000_یادگیری_ماشین_پیشرفته_test.pdf"],
-        "keywords": ["هوش مصنوعی", "آموزش"]
-    }
-]
-
-کار با فایل‌های JSON در Python
-JSON (JavaScript Object Notation) یک فرمت سبک برای ذخیره و انتقال داده‌هاست که در این پروژه برای ذخیره اطلاعات کاربران، درس‌ها، و پایان‌نامه‌ها استفاده می‌شه. در پایتون، ماژول json برای کار با فایل‌های JSON استفاده می‌شه. در ادامه، یه آموزش ساده و گام‌به‌گام برای کار با JSON ارائه می‌شه:
-1. خواندن از فایل JSON
-برای خواندن داده‌ها از یه فایل JSON (مثل students.json):
-import json
-
-with open("data/students.json", "r", encoding="utf-8") as file:
-    data = json.load(file)  # داده‌ها به‌صورت لیست یا دیکشنری لود می‌شن
-print(data)  # مثال: [{'name': 'علی احمدی', 'student_code': '0000', 'password': '0000'}]
-
-
-نکته: همیشه از encoding="utf-8" استفاده کن تا متن‌های فارسی درست خونده بشن.
-خطاها: اگه فایل وجود نداشته باشه، FileNotFoundError رخ می‌ده. می‌تونی با try-except مدیریتش کنی.
-
-2. نوشتن در فایل JSON
-برای اضافه کردن داده جدید به فایل JSON:
-import json
-
-داده جدید
-new_student = {"name": "رضا محمدی", "student_code": "0001", "password": "0001"}
-data = []
-
-خواندن داده‌های قبلی
-try:
-    with open("data/students.json", "r", encoding="utf-8") as file:
-        data = json.load(file)
-except FileNotFoundError:
-    data = []
-
-اضافه کردن داده جدید
-data.append(new_student)
-
-ذخیره در فایل
-with open("data/students.json", "w", encoding="utf-8") as file:
-    json.dump(data, file, ensure_ascii=False, indent=4)
-
-
-ensure_ascii=False: باعث می‌شه متن‌های فارسی درست ذخیره بشن.
-indent=4: فایل JSON رو خوانا و با فرمت مرتب ذخیره می‌کنه.
-
-3. ویرایش فایل JSON
-برای ویرایش یه رکورد خاص:
-import json
-
-خواندن داده‌ها
-with open("data/students.json", "r", encoding="utf-8") as file:
-    data = json.load(file)
-
-ویرایش (مثلاً تغییر رمز عبور دانشجو با کد 0000)
-for student in data:
-    if student["student_code"] == "0000":
-        student["password"] = "new_password"
-ذخیره تغییرات
-with open("data/students.json", "w", encoding="utf-8") as file:
-    json.dump(data, file, ensure_ascii=False, indent=4)
-
-نکات مهم
-
-پرتابل بودن: همیشه از مسیرهای نسبی (مثل data/students.json) به جای مسیرهای مطلق (مثل /Users/amirmahdi/...) استفاده کن.
-مدیریت خطا: همیشه خطاهای احتمالی (مثل نبود فایل) رو با try-except مدیریت کن.
-ساختار JSON: داده‌ها معمولاً به‌صورت لیست دیکشنری‌ها ذخیره می‌شن ([{...}, {...}]).
-
-قابلیت‌های MVP
-بخش دانشجو
-
-ورود: با کد دانشجویی (0000) و رمز عبور (0000) از طریق auth.py و welcome.py.
-مشاهده درس‌ها: نمایش درس‌های دارای ظرفیت از courses.json.
-درخواست پایان‌نامه: ثبت درخواست برای درس با course_id مشخص (در MVP خودکار تأیید می‌شه).
-درخواست دفاع: ثبت عنوان، کلمات کلیدی، و فایل PDF برای درس تأییدشده.
-جستجو: جستجو در defended_thesis.json بر اساس عنوان، نویسنده، یا کلمات کلیدی.
-
-بخش استاد
-
-ورود: با کد استادی (1111) و رمز عبور (1111).
-مشاهده درخواست‌ها: نمایش درخواست‌های پایان‌نامه از thesis.json.
-مدیریت دفاع: تأیید/رد درخواست دفاع، انتخاب تاریخ و داوران.
-ثبت نمره: ثبت نمره توسط داور (در MVP بدون محدودیت زمانی).
-جستجو: مشابه بخش دانشجو.
-
-بخش‌های موکول‌شده به نسخه‌های بعدی
-
-مشاهده وضعیت درخواست: در MVP فقط نمایشی است (همه درخواست‌ها خودکار تأیید می‌شن).
-ارسال مجدد درخواست: در MVP فقط نمایشی است.
-محدودیت ظرفیت استاد: در MVP محدودیتی برای راهنمایی/داوری وجود نداره.
-محدودیت زمانی دفاع: در MVP نیازی به انتظار ۳ ماه نیست.
-چکیده و تصاویر: در MVP فقط فایل PDF ذخیره می‌شه.
-
-نحوه اجرا
-
-نصب وابستگی‌ها:pip install pytest
-
-
-اجرای برنامه:python main_program.py
-
-
-نقش (دانشجو: 1، استاد: 2) را انتخاب کنید.
-کد و رمز عبور وارد کنید (دانشجو: 0000/0000، استاد: 1111/1111).
-از منوها برای انجام عملیات استفاده کنید.
-
-
-اجرای تست‌ها:pytest tests/test_comprehensive.py -s
-
-
-
-نکات توسعه
-
-تست‌ها: تست‌های کوچک در فایل‌های test_*.py برای هر ماژول نوشته شده‌اند. تست جامع در test_comprehensive.py عملکرد کلی سیستم رو بررسی می‌کنه.
-شبه‌کد: قبل از توسعه هر ماژول، شبه‌کد ماژولار نوشته شده و در پوشه history داکیومنت می‌شه.
-گام‌های بعدی:
-بهبود اعتبارسنجی ورودی‌ها (مثل فرمت تاریخ).
-تکمیل بخش‌های نمایشی (وضعیت درخواست، ارسال مجدد).
-اضافه کردن محدودیت‌های ظرفیت و زمان‌بندی.
-
-
-
-  ادامه توسعه و نکات مربوط به فایل های JSON (ادامه)
-برای توسعه‌دهندگان جدید:
-
-همیشه از مسیرهای نسبی استفاده کنید (مثل data/thesis.json).
-قبل از نوشتن/خواندن، وجود فایل رو با try-except چک کنید.
-برای مدیریت فایل‌های PDF، مسیر رو در JSON ذخیره کنید و از نام‌گذاری یکتا (مثل student_code_course_title.pdf) استفاده کنید.
-
-
-این پروژه با تأکید بر سادگی، ماژولاریتی، و قابلیت توسعه طراحی شده و آماده گسترش در نسخه‌های بعدی است. برای جزئیات بیشتر، به فایل‌های شبه‌کد در history و تست‌ها در tests مراجعه کنید.
-
-
-
-
-# پرامپت مورد استفاده برای همکاری با مدل های زبانی : 
-
 
 
 ## شرح پروژه پایتون: "سیستم مدیریت پایان‌نامه‌ها"
@@ -846,4 +495,352 @@ MVP شامل سه جزء اصلی است:
 - پس از برگزاری دفاع، نمره پایان‌نامه را ثبت می‌کند.
 
 #### جستجو
-- امکان جستجو در بانک پایان‌نامه‌ها مثل بخش دانشجو
+- امکان جستجو در بانک پایان‌نامه‌ها مثل بخش دانشج
+
+
+---
+---
+
+ 
+## ساختار برنامه (با جزئیات و مثال)
+
+پرتابل بودن: پروژه بدون وابستگی به مسیرهای خاص یا داده‌های سخت‌کدشده اجرا می‌شود.
+Single Source of Truth: داده‌ها در فایل‌های JSON ذخیره شده و از تکرار داده‌ها جلوگیری می‌شود.
+مدیریت فایل‌ها: فایل‌های PDF و تصاویر در پوشه data/uploads ذخیره شده و مسیر آن‌ها در فایل‌های JSON ثبت می‌شود.
+نام‌گذاری فایل‌ها: نام فایل‌ها باید شامل student_code و course_title باشد تا یکتا شوند.
+سادگی و قابلیت توسعه: کد ساده اما قابل توسعه نوشته شده تا حتی با دانش محدود پایتون قابل فهم باشد.
+
+زبان و ابزارها
+
+زبان برنامه‌نویسی: Python
+دیتابیس: فایل‌های JSON
+رابط کاربری: Command Line Interface (CLI)
+ذخیره‌سازی فایل‌ها: PDF و JPG در پوشه data/uploads با مسیرهای ثبت‌شده در JSON
+تست: با استفاده از pytest برای تست‌های کوچک و جامع
+
+ساختار پروژه
+<img width="1440" height="900" alt="Screenshot 1404-06-26 at 12 41 32 AM" src="https://github.com/user-attachments/assets/8828014a-9e92-4e47-a002-2af3b1a5ad43" />
+
+
+├── data
+│   ├── courses.json
+│   ├── defended_thesis.json
+│   ├── professors.json
+│   ├── students.json
+│   ├── thesis.json
+│   └── uploads
+│       └── test.pdf
+├── history
+│   └── changelog.txt
+├── main_program.py
+├── pytest.ini
+├── README.md
+├── src
+│   ├── entities
+│   │   ├── course.py
+│   │   ├── defense.py
+│   │   ├── professor.py
+│   │   ├── student.py
+│   │   ├── thesis.py
+│   │   ├── user.py
+│   │   └── README.md
+│   ├── interfaces
+│   │   ├── auth.py
+│   │   ├── professor_menu.py
+│   │   ├── student_menu.py
+│   │   ├── welcome.py
+│   │   └── README.md
+│   ├── search
+│   │   ├── search_engine.py
+│   ├── storage
+│   │   ├── file_manager.py
+│   │   ├── json_storage.py
+│   ├── utilities
+│   │   ├── utils.py
+│   ├── workflow
+│   │   ├── thesis_workflow.py
+└── tests
+    ├── test_auth.py
+    ├── test_comprehensive.py
+    ├── test_entities.py
+    ├── test_json_storage.py
+    ├── test_main.py
+    ├── test_menus.py
+    ├── test_search.py
+    ├── test_workflow.py
+
+توضیحات ساختار
+
+data/: شامل فایل‌های JSON برای ذخیره داده‌ها و پوشه uploads برای فایل‌های PDF و تصاویر.
+history/: شامل فایل changelog.txt برای ثبت تغییرات نسخه‌ها.
+main_program.py: نقطه ورود اصلی برنامه که از پکیج‌ها برای اجرای سیستم استفاده می‌کند.
+src/: شامل پکیج‌های اصلی و سطح پایین پروژه:
+entities/: کلاس‌های اصلی مانند User, Student, Professor, Course, Thesis, Defense.
+interfaces/: رابط‌های کاربری CLI شامل خوشامدگویی، ورود، و منوهای دانشجو و استاد.
+search/: موتور جست‌وجو برای پایان‌نامه‌های دفاع‌شده.
+storage/: مدیریت ذخیره‌سازی داده‌ها (JSON و فایل‌ها).
+utilities/: توابع عمومی و قابل استفاده مجدد.
+workflow/: منطق فرآیندهای پایان‌نامه (مثل ثبت درخواست و دفاع).
+
+
+tests/: شامل تست‌های کوچک و جامع برای اطمینان از عملکرد صحیح ماژول‌ها.
+
+فایل‌های JSON
+1. students.json
+هدف: ذخیره اطلاعات دانشجویانفیلدها:
+
+name: نام کامل دانشجو (str)
+student_code: کد دانشجویی برای ورود (str)
+password: رمز عبور (str)
+
+مثال:
+[
+    {
+        "name": "علی احمدی",
+        "student_code": "0000",
+        "password": "0000"
+    }
+]
+
+2. professors.json
+هدف: ذخیره اطلاعات اساتیدفیلدها:
+
+name: نام استاد (str)
+teacher_code: کد استادی برای ورود (str)
+password: رمز عبور (str)
+capacity_supervise: ظرفیت راهنمایی (int, اختیاری)
+capacity_judge: ظرفیت داوری (int, اختیاری)
+
+مثال:
+[
+    {
+        "name": "دکتر محمدی",
+        "teacher_code": "1111",
+        "password": "1111",
+        "capacity_supervise": 5,
+        "capacity_judge": 10
+    }
+]
+
+3. courses.json
+هدف: ذخیره اطلاعات درس‌هافیلدها:
+
+course_id: آیدی درس (str)
+course_title: عنوان درس (str)
+professor_code: کد استاد (str)
+year: سال تحصیلی (int)
+semester: نیمسال (str: "اول" یا "دوم")
+capacity: ظرفیت (int)
+resources: منابع درسی (list)
+sessions: تعداد جلسات (int)
+unit: تعداد واحد (int)
+
+مثال:
+[
+    {
+        "course_id": "C001",
+        "course_title": "هوش مصنوعی پیشرفته",
+        "professor_code": "1111",
+        "year": 2025,
+        "semester": "اول",
+        "capacity": 10,
+        "resources": ["کتاب"],
+        "sessions": 10,
+        "unit": 3
+    },
+    {
+        "course_id": "C002",
+        "course_title": "یادگیری ماشین پیشرفته",
+        "professor_code": "1111",
+        "year": 2025,
+        "semester": "اول",
+        "capacity": 10,
+        "resources": ["کتاب"],
+        "sessions": 10,
+        "unit": 3
+    }
+]
+
+4. thesis.json
+هدف: ذخیره درخواست‌های اخذ پایان‌نامهفیلدها:
+
+student_code: کد دانشجو (str)
+course_id: آیدی درس (str)
+request_date: تاریخ ثبت درخواست (str, فرمت YYYY-MM-DD)
+approval_date: تاریخ تأیید (str, فرمت YYYY-MM-DD)
+status: وضعیت درخواست (str: "pending", "approved", "rejected", "defending")
+defense_date: تاریخ دفاع (str, اختیاری)
+files: مسیر فایل‌های PDF/تصاویر (list)
+score: نمره (float, اختیاری)
+judges: لیست داوران (list)
+
+شناسه یکتا: ترکیب student_code + course_idمثال:
+[
+    {
+        "student_code": "0000",
+        "course_id": "C001",
+        "request_date": "2025-09-16",
+        "approval_date": "2025-09-16",
+        "status": "approved",
+        "defense_date": null,
+        "files": [],
+        "score": null,
+        "judges": []
+    }
+]
+
+5. defended_thesis.json
+هدف: آرشیو پایان‌نامه‌های دفاع‌شدهفیلدها:
+
+student_code: کد دانشجو (str)
+course_id: آیدی درس (str)
+title: عنوان پایان‌نامه (str)
+year: سال دفاع (int)
+semester: نیمسال دفاع (str)
+supervisor: کد استاد راهنما (str)
+judges: لیست داوران (list)
+score: نمره نهایی (float)
+files: مسیر فایل‌های PDF/تصاویر (list)
+keywords: کلمات کلیدی (list)
+
+مثال:
+[
+    {
+        "student_code": "0000",
+        "course_id": "C002",
+        "title": "کاربرد هوش مصنوعی در آموزش",
+        "year": 2025,
+        "semester": "اول",
+        "supervisor": "1111",
+        "judges": [],
+        "score": null,
+        "files": ["data/uploads/0000_یادگیری_ماشین_پیشرفته_test.pdf"],
+        "keywords": ["هوش مصنوعی", "آموزش"]
+    }
+]
+
+کار با فایل‌های JSON در Python
+JSON (JavaScript Object Notation) یک فرمت سبک برای ذخیره و انتقال داده‌هاست که در این پروژه برای ذخیره اطلاعات کاربران، درس‌ها، و پایان‌نامه‌ها استفاده می‌شه. در پایتون، ماژول json برای کار با فایل‌های JSON استفاده می‌شه. در ادامه، یه آموزش ساده و گام‌به‌گام برای کار با JSON ارائه می‌شه:
+1. خواندن از فایل JSON
+برای خواندن داده‌ها از یه فایل JSON (مثل students.json):
+import json
+
+with open("data/students.json", "r", encoding="utf-8") as file:
+    data = json.load(file)  # داده‌ها به‌صورت لیست یا دیکشنری لود می‌شن
+print(data)  # مثال: [{'name': 'علی احمدی', 'student_code': '0000', 'password': '0000'}]
+
+
+نکته: همیشه از encoding="utf-8" استفاده کن تا متن‌های فارسی درست خونده بشن.
+خطاها: اگه فایل وجود نداشته باشه، FileNotFoundError رخ می‌ده. می‌تونی با try-except مدیریتش کنی.
+
+2. نوشتن در فایل JSON
+برای اضافه کردن داده جدید به فایل JSON:
+import json
+
+داده جدید
+new_student = {"name": "رضا محمدی", "student_code": "0001", "password": "0001"}
+data = []
+
+خواندن داده‌های قبلی
+try:
+    with open("data/students.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+except FileNotFoundError:
+    data = []
+
+اضافه کردن داده جدید
+data.append(new_student)
+
+ذخیره در فایل
+with open("data/students.json", "w", encoding="utf-8") as file:
+    json.dump(data, file, ensure_ascii=False, indent=4)
+
+
+ensure_ascii=False: باعث می‌شه متن‌های فارسی درست ذخیره بشن.
+indent=4: فایل JSON رو خوانا و با فرمت مرتب ذخیره می‌کنه.
+
+3. ویرایش فایل JSON
+برای ویرایش یه رکورد خاص:
+import json
+
+خواندن داده‌ها
+with open("data/students.json", "r", encoding="utf-8") as file:
+    data = json.load(file)
+
+ویرایش (مثلاً تغییر رمز عبور دانشجو با کد 0000)
+for student in data:
+    if student["student_code"] == "0000":
+        student["password"] = "new_password"
+ذخیره تغییرات
+with open("data/students.json", "w", encoding="utf-8") as file:
+    json.dump(data, file, ensure_ascii=False, indent=4)
+
+نکات مهم
+
+پرتابل بودن: همیشه از مسیرهای نسبی (مثل data/students.json) به جای مسیرهای مطلق (مثل /Users/amirmahdi/...) استفاده کن.
+مدیریت خطا: همیشه خطاهای احتمالی (مثل نبود فایل) رو با try-except مدیریت کن.
+ساختار JSON: داده‌ها معمولاً به‌صورت لیست دیکشنری‌ها ذخیره می‌شن ([{...}, {...}]).
+
+قابلیت‌های MVP
+بخش دانشجو
+
+ورود: با کد دانشجویی (0000) و رمز عبور (0000) از طریق auth.py و welcome.py.
+مشاهده درس‌ها: نمایش درس‌های دارای ظرفیت از courses.json.
+درخواست پایان‌نامه: ثبت درخواست برای درس با course_id مشخص (در MVP خودکار تأیید می‌شه).
+درخواست دفاع: ثبت عنوان، کلمات کلیدی، و فایل PDF برای درس تأییدشده.
+جستجو: جستجو در defended_thesis.json بر اساس عنوان، نویسنده، یا کلمات کلیدی.
+
+بخش استاد
+
+ورود: با کد استادی (1111) و رمز عبور (1111).
+مشاهده درخواست‌ها: نمایش درخواست‌های پایان‌نامه از thesis.json.
+مدیریت دفاع: تأیید/رد درخواست دفاع، انتخاب تاریخ و داوران.
+ثبت نمره: ثبت نمره توسط داور (در MVP بدون محدودیت زمانی).
+جستجو: مشابه بخش دانشجو.
+
+بخش‌های موکول‌شده به نسخه‌های بعدی
+
+مشاهده وضعیت درخواست: در MVP فقط نمایشی است (همه درخواست‌ها خودکار تأیید می‌شن).
+ارسال مجدد درخواست: در MVP فقط نمایشی است.
+محدودیت ظرفیت استاد: در MVP محدودیتی برای راهنمایی/داوری وجود نداره.
+محدودیت زمانی دفاع: در MVP نیازی به انتظار ۳ ماه نیست.
+چکیده و تصاویر: در MVP فقط فایل PDF ذخیره می‌شه.
+
+نحوه اجرا
+
+نصب وابستگی‌ها:pip install pytest
+
+
+اجرای برنامه:python main_program.py
+
+
+نقش (دانشجو: 1، استاد: 2) را انتخاب کنید.
+کد و رمز عبور وارد کنید (دانشجو: 0000/0000، استاد: 1111/1111).
+از منوها برای انجام عملیات استفاده کنید.
+
+
+اجرای تست‌ها:pytest tests/test_comprehensive.py -s
+
+
+
+نکات توسعه
+
+تست‌ها: تست‌های کوچک در فایل‌های test_*.py برای هر ماژول نوشته شده‌اند. تست جامع در test_comprehensive.py عملکرد کلی سیستم رو بررسی می‌کنه.
+شبه‌کد: قبل از توسعه هر ماژول، شبه‌کد ماژولار نوشته شده و در پوشه history داکیومنت می‌شه.
+گام‌های بعدی:
+بهبود اعتبارسنجی ورودی‌ها (مثل فرمت تاریخ).
+تکمیل بخش‌های نمایشی (وضعیت درخواست، ارسال مجدد).
+اضافه کردن محدودیت‌های ظرفیت و زمان‌بندی.
+
+
+
+  ادامه توسعه و نکات مربوط به فایل های JSON (ادامه)
+برای توسعه‌دهندگان جدید:
+
+همیشه از مسیرهای نسبی استفاده کنید (مثل data/thesis.json).
+قبل از نوشتن/خواندن، وجود فایل رو با try-except چک کنید.
+برای مدیریت فایل‌های PDF، مسیر رو در JSON ذخیره کنید و از نام‌گذاری یکتا (مثل student_code_course_title.pdf) استفاده کنید.
+
+
+این پروژه با تأکید بر سادگی، ماژولاریتی، و قابلیت توسعه طراحی شده و آماده گسترش در نسخه‌های بعدی است. برای جزئیات بیشتر، به فایل‌های شبه‌کد در history و تست‌ها در tests مراجعه کنید.
+
