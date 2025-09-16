@@ -1,0 +1,73 @@
+[
+    {
+        "student_code": "0000",
+        "course_id": "C001",
+        "title": "کاربرد هوش مصنوعی در آموزش",
+        "year": 2025,
+        "semester": "اول",
+        "supervisor": "1111",
+        "judges": [
+            "1111"
+        ],
+        "score": "الف",
+        "files": [
+            "uploads/0000_هوش_مصنوعی_پیشرفته_thesis.pdf"
+        ],
+        "keywords": [
+            "هوش مصنوعی",
+            "آموزش",
+            "یادگیری ماشین"
+        ],
+        "defense_date": "2025-10-01"
+    },
+    {
+        "student_code": "0000",
+        "course_id": "C001",
+        "title": "کاربرد هوش مصنوعی",
+        "year": 2025,
+        "semester": "اول",
+        "supervisor": "1111",
+        "judges": [],
+        "score": null,
+        "files": [
+            "uploads/0000_هوش_مصنوعی_پیشرفته_thesis.pdf"
+        ],
+        "keywords": [
+            "هوش مصنوعی"
+        ]
+    },
+    {
+        "student_code": "0000",
+        "course_id": "C001",
+        "title": "کاربرد هوش مصنوعی در آموزش",
+        "year": 2025,
+        "semester": "اول",
+        "supervisor": "1111",
+        "judges": [],
+        "score": null,
+        "files": [
+            "uploads/test.pdf"
+        ],
+        "keywords": [
+            "هوش مصنوعی",
+            "آموزش"
+        ]
+    },
+    {
+        "student_code": "0000",
+        "course_id": "C002",
+        "title": "کاربرد هوش مصنوعی در آموزش",
+        "year": 2025,
+        "semester": "اول",
+        "supervisor": "1111",
+        "judges": [],
+        "score": null,
+        "files": [
+            "/Users/amirmahdi/Desktop/thesis_management_system/data/uploads/test.pdf"
+        ],
+        "keywords": [
+            "هوش مصنوعی",
+            "آموزش"
+        ]
+    }
+]

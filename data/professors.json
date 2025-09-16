@@ -1,0 +1,9 @@
+[
+    {
+        "name": "دکتر حسینی",
+        "teacher_code": "1111",
+        "password": "1111",
+        "capacity_supervise": 5,
+        "capacity_judge": 10
+    }
+]

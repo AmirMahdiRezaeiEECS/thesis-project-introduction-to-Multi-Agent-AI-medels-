@@ -1,0 +1,24 @@
+[
+    {
+        "course_id": "C001",
+        "course_title": "هوش مصنوعی پیشرفته",
+        "professor_code": "1111",
+        "year": 2025,
+        "semester": "اول",
+        "capacity": 10,
+        "resources": ["کتاب"],
+        "sessions": 10,
+        "unit": 3
+    },
+    {
+        "course_id": "C002",
+        "course_title": "یادگیری ماشین پیشرفته",
+        "professor_code": "1111",
+        "year": 2025,
+        "semester": "اول",
+        "capacity": 10,
+        "resources": ["کتاب"],
+        "sessions": 10,
+        "unit": 3
+    }
+]

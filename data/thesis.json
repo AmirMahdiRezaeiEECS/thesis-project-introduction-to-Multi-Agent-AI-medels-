@@ -1,0 +1,26 @@
+[
+    {
+        "student_code": "0000",
+        "course_id": "C001",
+        "request_date": "2025-09-16",
+        "status": "defending",
+        "approval_date": "2025-09-16",
+        "defense_date": "2025-10-01",
+        "files": [],
+        "score": null,
+        "judges": [
+            "1111"
+        ]
+    },
+    {
+        "student_code": "0000",
+        "course_id": "C002",
+        "request_date": "2025-09-16",
+        "status": "defending",
+        "approval_date": "2025-09-16",
+        "defense_date": null,
+        "files": [],
+        "score": null,
+        "judges": []
+    }
+]

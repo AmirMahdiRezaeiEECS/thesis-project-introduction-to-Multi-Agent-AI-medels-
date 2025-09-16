@@ -1,6 +1,0 @@
-# thesis_records.txt — human-readable storage for v1
-# thesis_records.txt — ذخیرهٔ قابل‌خواندن برای انسان در نسخهٔ ۱
-
-# Format (one record per line): id | student_name | thesis_title | degree | status
-# فرمت (هر رکورد یک خط): id | نام دانشجو | عنوان پایان‌نامه | مقطع | وضعیت
-1 | amirmahdi ! | my title !! | nothing | draft
