@@ -7,6 +7,7 @@ https://github.com/AmirMahdiRezaeiEECS/thesis-project-introduction-to-Multi-Agen
 ![Uploading Screenshot 1404-06-26 at 1.42.00 AM.png…]()
 
 
+توجه : داکیومنت زیر بر اساس اصول مهندسی پرامپت ،‌برای همکاری با LLMs بهینه شده است . به همین علت ساختاری کمی متفاوت از داکیومنت های قدیمی و مرسوم دارد.  
 
 ## شرح پروژه پایتون: "سیستم مدیریت پایان‌نامه‌ها"
 
