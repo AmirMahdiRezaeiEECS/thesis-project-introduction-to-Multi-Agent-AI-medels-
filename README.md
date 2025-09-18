@@ -4,7 +4,8 @@
 
 https://github.com/AmirMahdiRezaeiEECS/thesis-project-introduction-to-Multi-Agent-AI-medels-
 
-<img width="410" height="795" alt="Screenshot 1404-06-26 at 1 42 00 AM" src="https://github.com/user-attachments/assets/1705ee0b-3314-42ab-af7c-8fa6e98e20d6" />
+![Uploading Screenshot 1404-06-26 at 1.42.00 AM.png…]()
+
 
 
 ## شرح پروژه پایتون: "سیستم مدیریت پایان‌نامه‌ها"
